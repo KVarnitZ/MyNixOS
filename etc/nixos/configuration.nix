@@ -4,9 +4,44 @@
 
 { config, pkgs, lib, ... }:
 
+let
+  # Завантаження konfihy.nix
+  konfihyNix = builtins.fetchurl {
+    url = "https://raw.githubusercontent.com/KVarnitZ/MyNixOS/main/etc/nixos/konfihy.nix";
+    # Цей sha256 дійсний станом на 2025-06-14
+    # sha256 отримується через "nix-prefetch-url --type sha256 (посилання) | xargs nix hash to-sri --type sha256"
+    sha256 = "sha256-v8ttJYnmToByiMzntETkGbKSRvOFcNtpjmrSf0RLukM=";
+  };
+
+  # Завантаження zastosunky.nix
+  zastosunkyNix = builtins.fetchurl {
+    url = "https://raw.githubusercontent.com/KVarnitZ/MyNixOS/main/etc/nixos/zastosunky.nix";
+    # Цей sha256 дійсний станом на 2025-06-14
+    # sha256 отримується через "nix-prefetch-url --type sha256 (посилання) | xargs nix hash to-sri --type sha256"
+    sha256 = "sha256-uakUtxbYa4LDZq74t6z198lK8mdePFgpqzZhOdOA95w=";
+  };
+in
+
 {
+
+  environment.etc = {
+    # Додавання konfihy.nix до /etc/nixos/
+    "nixos/konfihy.nix" = {
+      source = konfihyNix;
+      # copyFrom = konfihyNix;
+    };
+
+    # Додавання zastosunky.nix до /etc/nixos/
+    "nixos/zastosunky.nix" = {
+      source = zastosunkyNix;
+      # copyFrom = zastosunkyNix;
+    };
+  };
+
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      konfihyNix # Імпорт з nix-store (копія зберігається в /etc/nixos)
+      zastosunkyNix # Імпорт з nix-store (копія зберігається в /etc/nixos)
       ./hardware-configuration.nix
     ];
 
@@ -90,24 +125,29 @@
     wofi # Меню програм
     nemo # Файловий менеджер
     chromium # Браузер
-    vesktop # Діскорд 
+    vesktop # Діскорд
+    element-desktop # Matrix 
     spotify # Музичка
+    youtube-music # Музичка 2
     vlc # Відеопрогравач
     telegram-desktop # ФСБ транслятор
     viber # Хуйняйбер
     qbittorrent # Торент
     protonvpn-gui # VPN
-    davinci-resolve # Відео рекдактор
+    #davinci-resolve # Відео рекдактор
     gimp-with-plugins # Фото редактор
     audacity # Аудіо редактор
     obs-studio # Запис відео
+    logmein-hamachi # Локальне підключення в інеті
     # Яйця
     kitty # Термінал
     lite-xl # Нотатник
     baobab # Інфа про диск
+    libsForQt5.ark # Архіватор
     resources # Системна інфа+процеси
     pavucontrol # Регулятор звуку
     mangohud # Інфа про пк в іграх
+    hyprpaper # Шпалери страху
     # Гратися
     steam # Вентиль в шапці
     prismlauncher # Майнкрафт
@@ -125,14 +165,8 @@
       "davinci-resolve"
       "steam"
       "steam-unwrapped"
+      "logmein-hamachi"
     ];
-
-  programs.steam = {
-    enable = true;
-    extraEnv = {
-    MANGOHUD = "1";
-    };
-  };
 
   # Експерементальна ерекція
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
