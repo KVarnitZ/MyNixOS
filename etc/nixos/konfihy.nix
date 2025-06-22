@@ -56,7 +56,7 @@ $menu = wofi --show drun
 # Or execute your favorite apps at launch like this:
 
 exec-once = hyprpaper
-exec-once = bash ~/.config/neuronkiller/volume-dominator-kvz.sh
+exec-once = ~/.config/neuronkiller/volume-dominator-kvz.sh
 # exec-once = nm-applet &
 # exec-once = waybar & hyprpaper & firefox
 
