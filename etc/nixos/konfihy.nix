@@ -55,8 +55,8 @@ $menu = wofi --show drun
 # Autostart necessary processes (like notifications daemons, status bars, etc.)
 # Or execute your favorite apps at launch like this:
 
+exec = ~/.config/neuronkiller/volume-dominator-kvz.sh
 exec-once = hyprpaper
-exec-once = ~/.config/neuronkiller/volume-dominator-kvz.sh
 # exec-once = nm-applet &
 # exec-once = waybar & hyprpaper & firefox
 
