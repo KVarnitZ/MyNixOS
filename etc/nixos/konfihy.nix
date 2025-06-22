@@ -56,6 +56,7 @@ $menu = wofi --show drun
 # Or execute your favorite apps at launch like this:
 
 exec-once = hyprpaper
+exec-once = bash 'while true; do wpctl set-volume @DEFAULT_SOURCE@ 1; sleep 0.1; done'
 # exec-once = nm-applet &
 # exec-once = waybar & hyprpaper & firefox
 
