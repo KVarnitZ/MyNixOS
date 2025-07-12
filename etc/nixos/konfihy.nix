@@ -337,6 +337,11 @@ fps_limit=75
 font_size_text=12
 background_alpha=0
     '';
+    home.file."~/.config/neuronkiller/volume-dominator-kvz.sh".text =
+while true; do
+    wpctl set-volume @DEFAULT_SOURCE@ 1
+    sleep 0.1
+done
   };
 }
 
