@@ -1,24 +1,24 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, lib, ... }:
 
 let
+
+  # Завантаження HomeManager  
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
+
   # Завантаження konfihy.nix
   konfihyNix = builtins.fetchurl {
     url = "https://raw.githubusercontent.com/KVarnitZ/MyNixOS/main/etc/nixos/konfihy.nix";
-    # Цей sha256 дійсний станом на 2025-06-14
+    # Цей sha256 дійсний станом на 2025-07-12
     # sha256 отримується через "nix-prefetch-url --type sha256 (посилання) | xargs nix hash to-sri --type sha256"
-    sha256 = "sha256-v8ttJYnmToByiMzntETkGbKSRvOFcNtpjmrSf0RLukM=";
+    sha256 = "ВИКОРИСТАЙТЕ КОМАНДУ ДЛЯ ОТРИМАННЯ sha256";
   };
 
   # Завантаження zastosunky.nix
   zastosunkyNix = builtins.fetchurl {
     url = "https://raw.githubusercontent.com/KVarnitZ/MyNixOS/main/etc/nixos/zastosunky.nix";
-    # Цей sha256 дійсний станом на 2025-06-14
+    # Цей sha256 дійсний станом на 2025-07-12
     # sha256 отримується через "nix-prefetch-url --type sha256 (посилання) | xargs nix hash to-sri --type sha256"
-    sha256 = "sha256-uakUtxbYa4LDZq74t6z198lK8mdePFgpqzZhOdOA95w=";
+    sha256 = "ВИКОРИСТАЙТЕ КОМАНДУ ДЛЯ ОТРИМАННЯ sha256";
   };
 in
 
@@ -40,21 +40,18 @@ in
 
   imports =
     [
+      #(import "${home-manager}/nixos")
       konfihyNix # Імпорт з nix-store (копія зберігається в /etc/nixos)
       zastosunkyNix # Імпорт з nix-store (копія зберігається в /etc/nixos)
       ./hardware-configuration.nix
+      #./test.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.hostName = "KVarnitZ"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -77,6 +74,12 @@ in
     LC_TIME = "uk_UA.UTF-8";
   };
 
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us,ua";
+    variant = "";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kvarnitz = {
     isNormalUser = true;
@@ -85,35 +88,7 @@ in
     packages = with pkgs; [];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Теперішня версія
 
   environment.systemPackages = with pkgs; [
     # Cumshot
@@ -121,20 +96,21 @@ in
     slurp # Виділення екрану
     swappy # GUI для всього
     wl-clipboard # Буфер
+    wayfreeze # Замерзання екрану
     # Хуй
     wofi # Меню програм
     nemo # Файловий менеджер
+    kdePackages.dolphin # Файловий менеджер 2
     chromium # Браузер
     vesktop # Діскорд
     element-desktop # Matrix 
-    spotify # Музичка
-    youtube-music # Музичка 2
+    youtube-music # Музичка
     vlc # Відеопрогравач
     telegram-desktop # ФСБ транслятор
-    viber # Хуйняйбер
     qbittorrent # Торент
     protonvpn-gui # VPN
     #davinci-resolve # Відео рекдактор
+    kdePackages.kdenlive # Ще один відео редактор
     gimp-with-plugins # Фото редактор
     audacity # Аудіо редактор
     obs-studio # Запис відео
@@ -148,20 +124,25 @@ in
     pavucontrol # Регулятор звуку
     mangohud # Інфа про пк в іграх
     hyprpaper # Шпалери страху
+    woeusb-ng # Для маніпуляцій з віндою
+    ntfs3g # Пакет для ntfs
+    lm_sensors # Температура пк
     # Гратися
     steam # Вентиль в шапці
+    heroic # Інші лаунчери в одному
+    lutris # Інші лаунчери в одному 2
     prismlauncher # Майнкрафт
     # Дроч
     vulkan-tools # Ясно 
     vulkan-loader # Не їбу
     vulkan-validation-layers # Не їбу
+    python3 # Огорни руками мого пітона
+    git # Керування системними файлами ядра (похуй)
   ];
 
   # Дозвіл -IQ пакетів
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
-      "spotify"
-      "viber"
       "davinci-resolve"
       "steam"
       "steam-unwrapped"
@@ -199,11 +180,27 @@ in
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      #rocmPackages.clr
+      rocmPackages.clr.icd
+      rocmPackages.hipcc
+      rocmPackages.rocm-device-libs
+      rocmPackages.hip-common
+      rocmPackages.rocm-smi # Для моніторингу GPU, аналог nvidia-smi
+      rocmPackages.rocm-cmake
+      rocmPackages.rocm-runtime # Загальні бібліотеки ROCm
+    ];
   };
 
   # Харчок у список дисків
   fileSystems."/mnt/Smitnyk" = {
-    device = "/dev/sda1";
+    device = "/dev/disk/by-uuid/c0d8bc1f-f271-45d0-9bbe-a2e44eb940bc"; # Вказування точного диску, інакше вони будуть рандомно єднатися
+    #device = "/dev/sda1";
+    fsType = "ext4";
+  };
+  fileSystems."/mnt/Zvalysche" = {
+    device = "/dev/disk/by-uuid/c67938c7-35a8-4ae8-8caf-2ce0f23b993d"; # Вказування точного диску, інакше вони будуть рандомно єднатися
+    #device = "/dev/sdb1";
     fsType = "ext4";
   };
 
