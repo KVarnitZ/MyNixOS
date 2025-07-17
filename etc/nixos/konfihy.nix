@@ -337,6 +337,7 @@ fps_limit=75
 font_size_text=12
 background_alpha=0
     '';
+    # Домінація над звуком, постійна зміна мікровона на 100%
     home.file."/.config/neuronkiller/volume-dominator-kvz.sh" = { text = ''
 while true; do
     wpctl set-volume @DEFAULT_SOURCE@ 1
@@ -345,6 +346,12 @@ done
     '';
     executable = true;
     };
+    # Налаштування запускача програм
+    home.file."/.config/wofi/config".text = ''
+mode=drun
+allow_images=true
+image_size=25
+    '';
   };
 }
 
