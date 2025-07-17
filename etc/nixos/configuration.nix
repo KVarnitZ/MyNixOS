@@ -194,12 +194,12 @@ in
 
   # Харчок у список дисків
   fileSystems."/mnt/Smitnyk" = {
-    device = "/dev/disk/by-uuid/c0d8bc1f-f271-45d0-9bbe-a2e44eb940bc"; # Вказування точного диску, інакше вони будуть рандомно єднатися
+    device = "/dev/disk/by-uuid/ВСТАВТЕ UUID ВАШОГО ДИСКУ"; # Вказування точного диску, інакше вони будуть рандомно єднатися
     #device = "/dev/sda1";
     fsType = "ext4";
   };
   fileSystems."/mnt/Zvalysche" = {
-    device = "/dev/disk/by-uuid/c67938c7-35a8-4ae8-8caf-2ce0f23b993d"; # Вказування точного диску, інакше вони будуть рандомно єднатися
+    device = "/dev/disk/by-uuid/ВСТАВТЕ UUID ВАШОГО ДИСКУ"; # Вказування точного диску, інакше вони будуть рандомно єднатися
     #device = "/dev/sdb1";
     fsType = "ext4";
   };
