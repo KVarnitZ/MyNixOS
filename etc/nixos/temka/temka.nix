@@ -67,7 +67,7 @@
           stdenv.mkDerivation {
             pname = "beautydream-gtk-icons"; # Назва не менш сміттєвого пакету на виході
             version = "2.0"; # Пєтух
-            src = ./icons/BeautyDream-GTK;
+            src = /etc/nixos/temka/icons/BeautyDream-GTK;
             installPhase = ''
               mkdir -p $out/share/icons
               cp -r . $out/share/icons/BeautyDream-GTK # Дубль
