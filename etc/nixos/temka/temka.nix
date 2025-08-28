@@ -10,7 +10,7 @@
       stdenv.mkDerivation {
         pname = "eksistere-kyrenia"; # Назва сміттєвого пакету на виході
         version = "1.0"; # Пєтух
-        src = /etc/nixos/temka/cursors/Eksistere-Kyrenia; # Шлях до курсу Нахуй
+        src = /etc/nixos/temka/cursors/Eksistere-Kyrenia; # Шлях до курсу Нахуй (має бути конкретний)
         installPhase = ''
           mkdir -p $out/share/icons
           cp -r . $out/share/icons/Eksistere-Kyrenia # Дубль
@@ -67,7 +67,7 @@
           stdenv.mkDerivation {
             pname = "beautydream-gtk-icons"; # Назва не менш сміттєвого пакету на виході
             version = "2.0"; # Пєтух
-            src = /etc/nixos/temka/icons/BeautyDream-GTK;
+            src = /etc/nixos/temka/icons/BeautyDream-GTK; (має бути конкретний шлях до ікон)
             installPhase = ''
               mkdir -p $out/share/icons
               cp -r . $out/share/icons/BeautyDream-GTK # Дубль
