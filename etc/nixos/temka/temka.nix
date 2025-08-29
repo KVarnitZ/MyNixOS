@@ -7,13 +7,14 @@
     # Створення сміттєвого пакету курсора (якщо курсор завантажений локально)
     myCustomCursorPackage = pkgs.callPackage ( 
       { stdenv, lib }:
+      # Сміттєвий пакет на виході
       stdenv.mkDerivation {
-        pname = "eksistere-kyrenia"; # Назва сміттєвого пакету на виході
-        version = "1.0"; # Пєтух
-        src = /etc/nixos/temka/cursors/Eksistere-Kyrenia; # Шлях до курсу Нахуй (має бути конкретний)
+        pname = "eksistere-kyrenia";
+        version = "1.0";
+        src = /etc/nixos/temka/cursors/Eksistere-Kyrenia;
         installPhase = ''
           mkdir -p $out/share/icons
-          cp -r . $out/share/icons/Eksistere-Kyrenia # Дубль
+          cp -r . $out/share/icons/Eksistere-Kyrenia
         '';
       }
     ) {};
@@ -65,12 +66,12 @@
         package = pkgs.callPackage (
           { stdenv, lib }:
           stdenv.mkDerivation {
-            pname = "beautydream-gtk-icons"; # Назва не менш сміттєвого пакету на виході
+            pname = "beautydream-gtk-icons";
             version = "2.0"; # Пєтух
-            src = /etc/nixos/temka/icons/BeautyDream-GTK; (має бути конкретний шлях до ікон)
+            src = /etc/nixos/temka/icons/BeautyDream-GTK;
             installPhase = ''
               mkdir -p $out/share/icons
-              cp -r . $out/share/icons/BeautyDream-GTK # Дубль
+              cp -r . $out/share/icons/BeautyDream-GTK
             '';
           }
         ) {};
