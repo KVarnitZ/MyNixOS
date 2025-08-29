@@ -1,9 +1,5 @@
 {
-  imports =
-    [
-      <home-manager/nixos>
-    ];
-    
+
   home-manager.users.kvarnitz = {
     home.stateVersion = "25.05"; # Мудак version
     # Steam
