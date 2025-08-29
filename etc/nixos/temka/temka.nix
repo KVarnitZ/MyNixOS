@@ -11,7 +11,7 @@
       stdenv.mkDerivation {
         pname = "eksistere-kyrenia";
         version = "1.0";
-        src = /etc/nixos/temka/cursors/Eksistere-Kyrenia;
+        src = ./cursors/Eksistere-Kyrenia;
         installPhase = ''
           mkdir -p $out/share/icons
           cp -r . $out/share/icons/Eksistere-Kyrenia
@@ -69,7 +69,7 @@
           stdenv.mkDerivation {
             pname = "beautydream-gtk-icons";
             version = "2.0"; # Пєтух
-            src = /etc/nixos/temka/icons/BeautyDream-GTK;
+            src = ./icons/BeautyDream-GTK;
             installPhase = ''
               mkdir -p $out/share/icons
               cp -r . $out/share/icons/BeautyDream-GTK
