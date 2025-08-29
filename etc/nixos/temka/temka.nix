@@ -51,7 +51,8 @@
     xdg.configFile = {
       "Kvantum/kvantum.kvconfig".text = ''
         [General]
-        theme=GraphiteNord # Використання конкретної темки з завантаженого пакету (типу варіації блять)
+        # Використання конкретної темки з завантаженого пакету (типу варіації блять)
+        theme=GraphiteNord
       ''; # Завантаження темки
       "Kvantum/GraphiteNord".source = "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
     };
@@ -61,8 +62,8 @@
       enable = true;
       # Божі ікони
       iconTheme = {
-        name = "BeautyDream-GTK"; # Назва божих ікон (має співпадати з папкою або пакетом)
         # Створення не менш сміттєвого пакету ікон (якщо ікони завантажені локально)
+        name = "BeautyDream-GTK";
         package = pkgs.callPackage (
           { stdenv, lib }:
           stdenv.mkDerivation {
@@ -78,7 +79,8 @@
       };
       # Темка
       theme = {
-        name = "catppuccin-latte-pink-compact"; # Ще один сміттєвий пакет
+        # Ще один сміттєвий пакет
+        name = "catppuccin-latte-pink-compact";
         package = pkgs.catppuccin-gtk.override {
           accents =  ["pink"]; # Смак сміття
           variant = "latte"; # Вишуканість сміття
