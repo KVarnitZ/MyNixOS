@@ -40,7 +40,7 @@ monitor=,preferred,auto,auto
 
 # Set programs that you use
 $terminal = kitty
-$fileManager = nemo
+$fileManager = thunar
 $menu = wofi --show drun
 
 
