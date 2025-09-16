@@ -1,82 +1,16 @@
-{ config, pkgs, lib, ... }:
+ config, pkgs, lib, ... }:
 
-let
-
-  # Завантаження HomeManager
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
-
-  # Можливість вантажити пакети з нестабільного аналу
-  unstable = import <nixos-unstable> { config = config.nixpkgs.config; };
-
-  # Завантаження konfihy.nix
-  konfihyNix = builtins.fetchurl {
-    url = "https://raw.githubusercontent.com/KVarnitZ/MyNixOS/main/etc/nixos/konfihy.nix";
-    # Цей sha256 дійсний станом на 2025-06-14
-    # sha256 отримується через "nix-prefetch-url --type sha256 https://raw.githubusercontent.com/KVarnitZ/MyNixOS/main/etc/nixos/konfihy.nix | xargs nix hash to-sri --type sha256"
-    sha256 = "sha256-/q0obG84BPnYO23b8AnINuNwwBS2JbsEsQGpLfdOn/4=";
-  };
-
-  # Завантаження zastosunky.nix
-  zastosunkyNix = builtins.fetchurl {
-    url = "https://raw.githubusercontent.com/KVarnitZ/MyNixOS/main/etc/nixos/zastosunky.nix";
-    # Цей sha256 дійсний станом на 2025-06-14
-    # sha256 отримується через "nix-prefetch-url --type sha256 https://raw.githubusercontent.com/KVarnitZ/MyNixOS/main/etc/nixos/zastosunky.nix | xargs nix hash to-sri --type sha256"
-    sha256 = "sha256-uakUtxbYa4LDZq74t6z198lK8mdePFgpqzZhOdOA95w=";
-  };
-
-  # Завантаження temka.nix
-  temkaNix = builtins.fetchurl {
-    url = https://raw.githubusercontent.com/KVarnitZ/MyNixOS/refs/heads/main/etc/nixos/temka/temka.nix;
-    # Цей sha256 дійсний станом на 2025-06-14
-    # sha256 отримується через "nix-prefetch-url --type sha256 https://raw.githubusercontent.com/KVarnitZ/MyNixOS/main/etc/nixos/temka/temka.nix | xargs nix hash to-sri --type sha256"
-    sha256 = "sha256-P9CUI+2LPP6b//gEW/245q4dx/kKrWIJzNHOiMDAu54=";
-  };
-
-  #myNixOSRepo = builtins.fetchTarball {
-    #url = "https://github.com/KVarnitZ/MyNixOS/archive/main.tar.gz";
-    # Важливо! Вам потрібно буде оновити цей sha256 щоразу, коли ви вносите зміни до репозиторію.
-    # Для отримання нового хешу виконайте в терміналі:
-    # nix-prefetch-url --type sha256 https://github.com/KVarnitZ/MyNixOS/archive/main.tar.gz | xargs nix hash to-sri --type sha256
-    #sha256 = "sha256-cBtgym/VzVQP3kbCQWgLLbnpE+KSz50m5bVhOSZFe3o=";
-  #};
-in
 {
-
-  environment.etc = {
-    # Додавання konfihy.nix до /etc/nixos/
-    "nixos/konfihy.nix" = {
-      source = konfihyNix;
-      # copyFrom = konfihyNix;
-    };
-
-    # Додавання zastosunky.nix до /etc/nixos/
-   "nixos/zastosunky.nix" = {
-      source = zastosunkyNix;
-      # copyFrom = zastosunkyNix;
-    };
-   
-   # Додавання temka.nix до /etc/nixos/temka/
-   "nixos/temka/temka.nix" = {
-      source = temkaNix;
-      # copyFrom = temkaNix;
-    };
-  };
-
-  imports =
+  imports = 
     [
-      #(import "${home-manager}/nixos")
-      konfihyNix # Імпорт з nix-store (копія зберігається в /etc/nixos)
-      zastosunkyNix # Імпорт з nix-store (копія зберігається в /etc/nixos)
-      temkaNix # # Імпорт з nix-store (копія зберігається в /etc/nixos/temka)
       ./hardware-configuration.nix
-      ./shryftyky.nix
     ];
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "KVarnitZ"; # Define your hostname.
+  networking.hostName = "KVarnitZ"; # Шо ти, голова?
 
   # Інтернат
   networking.networkmanager.enable = true;
@@ -134,15 +68,17 @@ in
     # Хуй
     wofi # Меню програм
     nemo # Файловий менеджер
-    chromium # Браузер
+    xfce.thunar # Файловий менеджер 2
+    librewolf # Браузер
     vesktop # Діскорд
     element-desktop # Matrix 
     youtube-music # Музичка
     vlc # Відеопрогравач
+    imv # Фотопереглядач
     telegram-desktop # ФСБ транслятор
     qbittorrent # Торент
     protonvpn-gui # VPN
-    davinci-resolve # Відео рекдактор
+    #davinci-resolve # Відео рекдактор
     kdePackages.kdenlive # Відео редактор 2
     gimp-with-plugins # Фото редактор
     audacity # Аудіо редактор
@@ -152,7 +88,7 @@ in
     kitty # Термінал
     lite-xl # Нотатник
     baobab # Інфа про диск
-    libsForQt5.ark # Архіватор
+    kdePackages.ark # Архіватор
     resources # Системна інфа+процеси
     pavucontrol # Регулятор звуку
     mangohud # Інфа про пк в іграх
@@ -163,33 +99,49 @@ in
     # Гратися
     steam # Вентиль в шапці
     protonup-ng # Кастомні протони для стіму
-    wine
+    wine # Імітація Kaldows
+    winetricks # Додача до Wine
     gamescope # Маніпуляції з іграми
     heroic # Інші лаунчери в одному
     lutris # Інші лаунчери в одному 2
     prismlauncher # Майнкрафт
+    appimage-run # Запускач прог AppImage
     # Дроч
     vulkan-tools # Ясно 
     vulkan-loader # Не їбу
     vulkan-validation-layers # Не їбу
     python3 # Огорни руками мого пітона
+    openjdk # Джава
     git # Керування системними файлами ядра (похуй)
   ];
 
   # Дозвіл -IQ пакетів
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
-      "davinci-resolve"
+      #"davinci-resolve"
       "steam"
       "steam-unwrapped"
       "logmein-hamachi"
     ];
 
   # Дозвіл (1000-7)*2 пакетів
-  nixpkgs.overlays = [
-    (self: super: {
-      davinci-resolve = unstable.davinci-resolve;
-    })
+  #nixpkgs.overlays = [
+    #(self: super: {
+      #davinci-resolve = unstable.davinci-resolve;
+    #})
+  #];
+
+  # Відкриття портів і хостінг через playit.gg
+  services.playit = {
+    enable = true;
+    user = "playit";
+    group = "playit";
+    secretPath = "/home/kvarnitz/.config/playit_gg/";
+  };
+
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [
+    22820
   ];
 
   services.flatpak.enable = true;
