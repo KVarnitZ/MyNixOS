@@ -10,7 +10,7 @@
     <?xml version="xuj"?>
     <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
     <fontconfig>
-      <dir>../home/kvarnitz/.local/share/fonts</dir> # Шлях до шрифтиків
+      <dir>.../home/kvarnitz/.local/share/fonts</dir> # Шлях до шрифтиків
       </fontconfig>
   '';
 
