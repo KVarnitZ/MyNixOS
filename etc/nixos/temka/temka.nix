@@ -51,7 +51,7 @@
     xdg.configFile = {
       "Kvantum/kvantum.kvconfig".text = ''
         [General]
-        # Використання конкретної темки з завантаженого пакету (типу варіації блять)
+        # Використання конкретної темки з завантаженого пакету (типу варіації блять) !!!ТЕМУ ТРЕБА ЗМІНИТИ, ВОНА ЗНИКНЕ З ПАКЕТІВ!!!
         theme=GraphiteNord
       ''; # Завантаження темки
       "Kvantum/GraphiteNord".source = "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
