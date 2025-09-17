@@ -182,7 +182,6 @@
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      #rocmPackages.clr
       rocmPackages.clr.icd
       rocmPackages.hipcc
       rocmPackages.rocm-device-libs
