@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, unstable, ... }:
 
 {
   imports = 
@@ -78,7 +78,7 @@
     telegram-desktop # ФСБ транслятор
     qbittorrent # Торент
     protonvpn-gui # VPN
-    #davinci-resolve # Відео рекдактор
+    unstable.davinci-resolve # Відео рекдактор
     kdePackages.kdenlive # Відео редактор 2
     gimp-with-plugins # Фото редактор
     audacity # Аудіо редактор
@@ -118,18 +118,11 @@
   # Дозвіл -IQ пакетів
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
-      #"davinci-resolve"
+      "davinci-resolve"
       "steam"
       "steam-unwrapped"
       "logmein-hamachi"
     ];
-
-  # Дозвіл (1000-7)*2 пакетів
-  #nixpkgs.overlays = [
-    #(self: super: {
-      #davinci-resolve = unstable.davinci-resolve;
-    #})
-  #];
 
   # Відкриття портів і хостінг через playit.gg
   services.playit = {

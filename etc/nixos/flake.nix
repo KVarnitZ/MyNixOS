@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,15 +17,21 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, my-nixos-repo, playit-nixos-module, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, my-nixos-repo, playit-nixos-module, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+          "davinci-resolve"
+        ];
+      };
     in
     {
     nixosConfigurations."KVarnitZ" = nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs unstable; };
       modules = [
         playit-nixos-module.nixosModules.default
         ./configuration.nix
