@@ -134,7 +134,7 @@
 
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
-    22820
+    25565
   ];
 
   services.flatpak.enable = true;
