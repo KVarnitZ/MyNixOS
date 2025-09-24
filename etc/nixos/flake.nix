@@ -12,12 +12,9 @@
       url = "github:KVarnitZ/MyNixOS/main";
       flake = false;
     };
-    playit-nixos-module = {
-      url = "github:pedorich-n/playit-nixos-module";
-    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, my-nixos-repo, playit-nixos-module, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, my-nixos-repo, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -33,7 +30,6 @@
       inherit system;
       specialArgs = { inherit inputs unstable; };
       modules = [
-        playit-nixos-module.nixosModules.default
         ./configuration.nix
         home-manager.nixosModules.home-manager
         ({ config, pkgs, ... }: {

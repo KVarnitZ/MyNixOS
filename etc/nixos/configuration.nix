@@ -4,6 +4,7 @@
   imports = 
     [
       ./hardware-configuration.nix
+      ./server.nix
     ];
 
   # Bootloader
@@ -96,6 +97,7 @@
     woeusb-ng # Для маніпуляцій з віндою
     ntfs3g # Пакет для ntfs
     lm_sensors # Температура пк
+    ffmpeg # Угар з кодеками
     # Гратися
     steam # Вентиль в шапці
     protonup-ng # Кастомні протони для стіму
@@ -112,7 +114,8 @@
     vulkan-validation-layers # Не їбу
     python3 # Огорни руками мого пітона
     openjdk # Джава
-    git # Керування системними файлами ядра (похуй)
+    git # Угар з GitHub
+    git-lfs # Для великих файлів GitHub
   ];
 
   # Дозвіл -IQ пакетів
@@ -123,19 +126,6 @@
       "steam-unwrapped"
       "logmein-hamachi"
     ];
-
-  # Відкриття портів і хостінг через playit.gg
-  services.playit = {
-    enable = true;
-    user = "playit";
-    group = "playit";
-    secretPath = "/home/kvarnitz/.config/playit_gg/";
-  };
-
-  networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [
-    25565
-  ];
 
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {
@@ -182,6 +172,7 @@
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
+      #rocmPackages.clr
       rocmPackages.clr.icd
       rocmPackages.hipcc
       rocmPackages.rocm-device-libs
