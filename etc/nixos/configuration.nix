@@ -2,7 +2,7 @@
 
 {
   imports = 
-    [
+    [  
       ./hardware-configuration.nix
       ./server.nix
     ];
@@ -59,6 +59,11 @@
   system.stateVersion = "25.05"; # Теперішня версія системи
 
   # САМОПИС БЛЯЯЯЯЯЯЯТЬ
+  
+  # Пакетний менеджер Lix
+  nix.package = pkgs.lix;
+
+  # Пакети
   environment.systemPackages = with pkgs; [
     # Cumshot
     grim # Скрінер

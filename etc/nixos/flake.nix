@@ -1,5 +1,5 @@
 {
-  description = "Жорстко надристав у систему, оооуууу єєєєс!";
+  description = "Вириг у конфігурацію";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
@@ -12,9 +12,13 @@
       url = "github:KVarnitZ/MyNixOS/main";
       flake = false;
     };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-2.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, my-nixos-repo, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, my-nixos-repo, lix-module, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -30,6 +34,7 @@
       inherit system;
       specialArgs = { inherit inputs unstable; };
       modules = [
+        lix-module.nixosModules.default
         ./configuration.nix
         home-manager.nixosModules.home-manager
         ({ config, pkgs, ... }: {
