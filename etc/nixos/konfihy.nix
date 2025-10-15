@@ -194,7 +194,7 @@ misc {
 
 # https://wiki.hyprland.org/Configuring/Variables/#input
 input {
-    kb_layout = us,ua
+    kb_layout = us,ua,uklat
     kb_variant =
     kb_model =
     kb_options = grp:win_space_toggle
