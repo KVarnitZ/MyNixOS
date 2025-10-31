@@ -28,9 +28,22 @@ fonts.fontconfig = {
     MOZ_ENABLE_WAYLAND = "1";
     QT_QPA_PLATFORM = "wayland";
     GDK_BACKEND = "wayland";
-  
+
     # Для шрифтиків
     FREETYPE_PROPERTIES = "truetype:interpreter-version=38";
   };
+
+programs.kitty = {
+  enable = true;
+  font = {
+    name = "Nihonium113";
+    size = 12;
+  };
+  settings = {
+    # Додаткові налаштування для кращого рендерингу
+    disable_ligatures = "never";
+    font_features = "none";
+  };
+};
 
 }
