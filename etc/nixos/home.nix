@@ -39,10 +39,6 @@ programs.kitty = {
     name = "Nihonium113";
     size = 12;
   };
-  extraConfig = ''
-    # Форсувати оновлення кешу шрифтів
-    box_drawing_scale = 0.001, 1, 1.5, 2
-  '';
 };
 
 }
