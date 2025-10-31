@@ -97,7 +97,7 @@ gtk = {
     enable = true;
     font = {
       name = "Nihonium113 Regular";
-      size = 12;
+      size = 16;
     };
   };
 
