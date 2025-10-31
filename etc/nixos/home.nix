@@ -17,7 +17,7 @@ home.file.".config/fontconfig/fonts.conf".text = ''
   <?xml version="1.0"?>
   <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
   <fontconfig>
-    <!-- Основні налаштування рендерингу -->
+    <!-- Глобальні налаштування рендерингу -->
     <match target="font">
       <edit name="antialias" mode="assign">
         <bool>true</bool>
@@ -26,17 +26,20 @@ home.file.".config/fontconfig/fonts.conf".text = ''
         <bool>true</bool>
       </edit>
       <edit name="hintstyle" mode="assign">
-        <const>hintslight</const>  <!-- або hintfull, hintmedium, hintnone -->
+        <const>hintfull</const>
       </edit>
       <edit name="rgba" mode="assign">
-        <const>rgb</const>  <!-- для LCD моніторів -->
+        <const>rgb</const>
       </edit>
       <edit name="lcdfilter" mode="assign">
         <const>lcddefault</const>
       </edit>
+      <edit name="embeddedbitmap" mode="assign">
+        <bool>false</bool>
+      </edit>
     </match>
 
-    <!-- Налаштування для Nihonium113 -->
+    <!-- Спеціально для Nihonium113 -->
     <match target="font">
       <test name="family" compare="eq">
         <string>Nihonium113</string>
@@ -44,16 +47,28 @@ home.file.".config/fontconfig/fonts.conf".text = ''
       <edit name="autohint" mode="assign">
         <bool>false</bool>
       </edit>
+      <edit name="hinting" mode="assign">
+        <bool>true</bool>
+      </edit>
+      <edit name="hintstyle" mode="assign">
+        <const>hintfull</const>
+      </edit>
     </match>
 
-    <!-- Пріоритет шрифтів -->
-    <alias>
-      <family>serif</family>
-      <prefer><family>Nihonium113</family></prefer>
-    </alias>
+    <!-- Пріоритети -->
     <alias>
       <family>sans-serif</family>
-      <prefer><family>Nihonium113</family></prefer>
+      <prefer>
+        <family>Nihonium113</family>
+        <family>Noto Sans</family>
+      </prefer>
+    </alias>
+    <alias>
+      <family>serif</family>
+      <prefer>
+        <family>Nihonium113</family>
+        <family>Noto Serif</family>
+      </prefer>
     </alias>
   </fontconfig>
 '';
