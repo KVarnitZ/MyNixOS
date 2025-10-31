@@ -83,6 +83,16 @@ fonts.fontconfig = {
   };
 };
 
+  home.sessionVariables = {
+    # Для кращого рендерингу в Wayland
+    MOZ_ENABLE_WAYLAND = "1";
+    QT_QPA_PLATFORM = "wayland";
+    GDK_BACKEND = "wayland";
+  
+    # Для шрифтиків
+    FREETYPE_PROPERTIES = "truetype:interpreter-version=38";
+  };
+
 gtk = {
     enable = true;
     font = {
