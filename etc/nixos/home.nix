@@ -18,7 +18,7 @@ fonts.fontconfig = {
   defaultFonts = {
     serif = [ "Noto Serif" "Noto Color Emoji" ];
     sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
-    monospace = [ "Nihonium113" "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
+    monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
     emoji = [ "Noto Color Emoji" ];
   };
 };
@@ -32,13 +32,5 @@ fonts.fontconfig = {
     # Для шрифтиків
     FREETYPE_PROPERTIES = "truetype:interpreter-version=38";
   };
-
-programs.kitty = {
-  enable = true;
-  font = {
-    name = "Nihonium113";
-    size = 12;
-  };
-};
 
 }
