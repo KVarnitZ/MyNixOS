@@ -13,6 +13,51 @@ home.stateVersion = "25.05";
     source = "${inputs.my-nixos-repo}/home/kvarnitz/.config/hypr/Wallpaper.jpg";
   };
 
+home.file.".config/fontconfig/fonts.conf".text = ''
+  <?xml version="1.0"?>
+  <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+  <fontconfig>
+    <!-- Основні налаштування рендерингу -->
+    <match target="font">
+      <edit name="antialias" mode="assign">
+        <bool>true</bool>
+      </edit>
+      <edit name="hinting" mode="assign">
+        <bool>true</bool>
+      </edit>
+      <edit name="hintstyle" mode="assign">
+        <const>hintslight</const>  <!-- або hintfull, hintmedium, hintnone -->
+      </edit>
+      <edit name="rgba" mode="assign">
+        <const>rgb</const>  <!-- для LCD моніторів -->
+      </edit>
+      <edit name="lcdfilter" mode="assign">
+        <const>lcddefault</const>
+      </edit>
+    </match>
+
+    <!-- Налаштування для Nihonium113 -->
+    <match target="font">
+      <test name="family" compare="eq">
+        <string>Nihonium113</string>
+      </test>
+      <edit name="autohint" mode="assign">
+        <bool>false</bool>
+      </edit>
+    </match>
+
+    <!-- Пріоритет шрифтів -->
+    <alias>
+      <family>serif</family>
+      <prefer><family>Nihonium113</family></prefer>
+    </alias>
+    <alias>
+      <family>sans-serif</family>
+      <prefer><family>Nihonium113</family></prefer>
+    </alias>
+  </fontconfig>
+'';
+
 fonts.fontconfig = {
   enable = true;
   defaultFonts = {
