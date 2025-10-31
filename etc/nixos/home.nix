@@ -18,7 +18,7 @@ fonts.fontconfig = {
   defaultFonts = {
     serif = [ "Noto Serif" "Noto Color Emoji" ];
     sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
-    monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
+    monospace = [ "Nihonium113" "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
     emoji = [ "Noto Color Emoji" ];
   };
 };
@@ -39,11 +39,10 @@ programs.kitty = {
     name = "Nihonium113";
     size = 12;
   };
-  settings = {
-    # Додаткові налаштування для кращого рендерингу
-    disable_ligatures = "never";
-    font_features = "none";
-  };
+  extraConfig = ''
+    # Форсувати оновлення кешу шрифтів
+    box_drawing_scale = 0.001, 1, 1.5, 2
+  '';
 };
 
 }
