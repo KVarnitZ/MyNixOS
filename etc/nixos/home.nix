@@ -33,12 +33,4 @@ fonts.fontconfig = {
     FREETYPE_PROPERTIES = "truetype:interpreter-version=38";
   };
 
-gtk = {
-    enable = true;
-    font = {
-      name = "Nihonium113 Regular";
-      size = 12;
-    };
-  };
-
 }
