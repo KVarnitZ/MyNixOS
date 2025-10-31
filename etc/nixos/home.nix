@@ -13,27 +13,15 @@ home.stateVersion = "25.05";
     source = "${inputs.my-nixos-repo}/home/kvarnitz/.config/hypr/Wallpaper.jpg";
   };
 
-  fonts.fontconfig = {
-    enable = true;
-    localConf = ''
-      <?xml version="1.0"?>
-      <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-      <fontconfig>
-        <alias>
-          <family>sans-serif</family>
-          <prefer><family>Nihonium113</family></prefer>
-        </alias>
-        <alias>
-          <family>serif</family>
-          <prefer><family>Nihonium113</family></prefer>
-        </alias>
-        <alias>
-          <family>monospace</family>
-          <prefer><family>Nihonium113</family></prefer>
-        </alias>
-      </fontconfig>
-    '';
+fonts.fontconfig = {
+  enable = true;
+  defaultFonts = {
+    serif = [ "Nihonium113" "Noto Color Emoji" ];
+    sansSerif = [ "Nihonium113" "Noto Color Emoji" ];
+    monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
+    emoji = [ "Noto Color Emoji" ];
   };
+};
 
 gtk = {
     enable = true;
