@@ -13,22 +13,6 @@ home.stateVersion = "25.05";
     source = "${inputs.my-nixos-repo}/home/kvarnitz/.config/hypr/Wallpaper.jpg";
   };
 
-fonts.fontconfig = {
-  enable = true;
-  defaultFonts = {
-    serif = [ "Noto Serif" "Noto Color Emoji" ];
-    sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
-    monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
-    emoji = [ "Noto Color Emoji" ];
-  };
-};
-
-  home.sessionVariables = {
-    # Для кращого рендерингу в Wayland
-    MOZ_ENABLE_WAYLAND = "1";
-    QT_QPA_PLATFORM = "wayland";
-    GDK_BACKEND = "wayland";
-
     # Для шрифтиків
     FREETYPE_PROPERTIES = "truetype:interpreter-version=38";
   };
