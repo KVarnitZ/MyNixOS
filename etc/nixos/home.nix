@@ -13,8 +13,4 @@ home.stateVersion = "25.05";
     source = "${inputs.my-nixos-repo}/home/kvarnitz/.config/hypr/Wallpaper.jpg";
   };
 
-    # Для шрифтиків
-    FREETYPE_PROPERTIES = "truetype:interpreter-version=38";
-  };
-
 }
