@@ -342,6 +342,10 @@ done
 mode=drun
 allow_images=true
 image_size=25
+
+# Immediate mode для CK3 (вимикає VSync compositor'а)
+windowrulev2 = immediate, class:^(crusaderkings3)$
+windowrulev2 = immediate, title:^(Crusader Kings III)$
     '';
   };
 }
