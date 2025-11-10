@@ -18,45 +18,21 @@ bind = SUPER+SHIFT, S, exec, bash -c 'wayfreeze & PID=$!; trap "kill -KILL $PID"
 # Create your files separately and then link them to this file like this:
 # source = ~/.config/hypr/myColors.conf
 
-
-################
-### MONITORS ###
-################
-
-# See https://wiki.hyprland.org/Configuring/Monitors/
+# Налаштування моніторів
 monitor=,preferred,auto,auto
 
-
-###################
-### MY PROGRAMS ###
-###################
-
-# See https://wiki.hyprland.org/Configuring/Keywords/
-
-# Set programs that you use
+# Стандартні проги
 $terminal = kitty
 $fileManager = thunar
 $menu = wofi --show drun
 
-
-#################
-### AUTOSTART ###
-#################
-
-# Autostart necessary processes (like notifications daemons, status bars, etc.)
-# Or execute your favorite apps at launch like this:
-
 exec = ~/.config/neuronkiller/volume-dominator-kvz.sh
-exec-once = hyprpaper
-# exec-once = nm-applet &
-# exec-once = waybar & hyprpaper & firefox
-
+exec = hyprpaper
+exec-once = easyeffects --gapplication-service
 
 #############################
 ### ENVIRONMENT VARIABLES ###
 #############################
-
-# See https://wiki.hyprland.org/Configuring/Environment-variables/
 
 env = XCURSOR_SIZE,24
 env = HYPRCURSOR_SIZE,24
