@@ -73,8 +73,8 @@
     wayfreeze # Замерзання екрану
     # Хуй
     wofi # Меню програм
-    nemo # Файловий менеджер
-    xfce.thunar # Файловий менеджер 2
+    xfce.thunar # Файловий менеджер
+    xfce.tumbler  # Лоліатюри    
     librewolf # Браузер
     vesktop # Діскорд
     element-desktop # Matrix 
@@ -90,6 +90,8 @@
     audacity # Аудіо редактор
     obs-studio # Запис відео
     logmein-hamachi # Локальне підключення в інеті
+    unityhub # Об'єднуйтесь холопи
+    fontforge-gtk # Редактор шрифтів
     # Яйця
     kitty # Термінал
     lite-xl # Нотатник
@@ -97,6 +99,7 @@
     kdePackages.ark # Архіватор
     resources # Системна інфа+процеси
     pavucontrol # Регулятор звуку
+    easyeffects # Для редагування звуку
     mangohud # Інфа про пк в іграх
     hyprpaper # Шпалери страху
     woeusb-ng # Для маніпуляцій з віндою
@@ -121,6 +124,7 @@
     openjdk # Джава
     git # Угар з GitHub
     git-lfs # Для великих файлів GitHub
+    gh # Пов'язка з GitHub
   ];
 
   # Дозвіл -IQ пакетів
@@ -130,6 +134,7 @@
       "steam"
       "steam-unwrapped"
       "logmein-hamachi"
+      "unityhub"
     ];
 
   services.flatpak.enable = true;
@@ -143,6 +148,24 @@
 
   # Експерементальна ерекція
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Латинська українська
+  environment.etc."xkb/symbols/uklat" = {
+    text = ''
+      default partial alphanumeric_keys
+      xkb_symbols "basic" {
+          include "us(basic)"
+          name[Group1] = "English (US, Ukrainian Latin)";
+          key <AB01> { [ z, Z, zcaron, Zcaron ] };
+          key <AC02> { [ s, S, scaron, Scaron ] };
+          key <AB03> { [ c, C, ccaron, Ccaron ] };
+          key <AC05> { [ g, G, gcircumflex, Gcircumflex ] };
+          key <AB08> { [ comma, less, semicolon, less ] };
+          key <AB09> { [ period, greater, colon, greater ] };
+          include "level3(ralt_switch)"
+      };
+    '';
+  };
 
   # Усяка херь, аби композитори робили
   services.displayManager.sddm.enable = true;
@@ -166,6 +189,8 @@
     ];
   };
 
+  boot.kernelModules = [ "fuse" ];
+
   # Відюха 
   services.xserver = {
     enable = true;
@@ -185,6 +210,10 @@
       rocmPackages.rocm-smi # Для моніторингу GPU, аналог nvidia-smi
       rocmPackages.rocm-cmake
       rocmPackages.rocm-runtime # Загальні бібліотеки ROCm
+      amdvlk
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk  # Для 32-bit сумісності
     ];
   };
 
