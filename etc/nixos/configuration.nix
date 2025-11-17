@@ -108,6 +108,7 @@
     ffmpeg # Угар з кодеками
     # Гратися
     steam # Вентиль в шапці
+    hydralauncher # Зелений steam
     protonup-ng # Кастомні протони для стіму
     wine # Імітація Kaldows
     winetricks # Додача до Wine
@@ -133,6 +134,7 @@
       "davinci-resolve"
       "steam"
       "steam-unwrapped"
+      "steamcmd"
       "logmein-hamachi"
       "unityhub"
     ];
@@ -156,12 +158,20 @@
       xkb_symbols "basic" {
           include "us(basic)"
           name[Group1] = "English (US, Ukrainian Latin)";
+          # Запасний метод обригання
           key <AB01> { [ z, Z, zcaron, Zcaron ] };
-          key <AC02> { [ s, S, scaron, Scaron ] };
-          key <AB03> { [ c, C, ccaron, Ccaron ] };
-          key <AC05> { [ g, G, gcircumflex, Gcircumflex ] };
+          key <AC02> { [ s, S, scaron, Scaron ] }; 
+          key <AB03> { [ c, C, ccaron, Ccaron ] }; 
+          key <AC05> { [ g, G, gbreve, Gbreve ] }; 
+          # Основний метод обригання
+          key <AC06> { [ gbreve, Gbreve, h, H ] };
+          key <AC10> { [ scaron, Scaron, scircumflex, Scircumflex ] };
           key <AB08> { [ comma, less, semicolon, less ] };
           key <AB09> { [ period, greater, colon, greater ] };
+          key <AC11> { [ apostrophe, quotedbl, ccaron, Ccaron ] };
+          key <AD11> { [ bracketleft, braceleft, zcaron, Zcaron ] };
+          key <AD12> { [ bracketright, braceright, idiaeresis, Idiaeresis ] };
+          
           include "level3(ralt_switch)"
       };
     '';
