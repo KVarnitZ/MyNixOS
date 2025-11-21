@@ -28,7 +28,7 @@ $menu = wofi --show drun
 
 exec = ~/.config/neuronkiller/volume-dominator-kvz.sh
 exec = hyprpaper
-exec-once = easyeffects --gapplication-service
+# exec-once = easyeffects --gapplication-service
 
 #############################
 ### ENVIRONMENT VARIABLES ###
