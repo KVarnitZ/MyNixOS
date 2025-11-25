@@ -1,7 +1,7 @@
 {
     
   home-manager.users.kvarnitz = {
-    home.stateVersion = "25.05"; # Мудак version
+    home.stateVersion = "25.05"; # Mudak version
     # Hyprland
     home.file."/.config/hypr/hyprland.conf".text = ''
 env = QT_QPA_PLATFORMTHEME,qt6ct
@@ -18,17 +18,17 @@ bind = SUPER+SHIFT, S, exec, bash -c 'wayfreeze & PID=$!; trap "kill -KILL $PID"
 # Create your files separately and then link them to this file like this:
 # source = ~/.config/hypr/myColors.conf
 
-# Налаштування моніторів
+# Nalaštuvannja monitoriv
 monitor=,preferred,auto,auto
 
-# Стандартні проги
+# Standartni proğy
 $terminal = kitty
 $fileManager = thunar
 $menu = wofi --show drun
 
 exec = ~/.config/neuronkiller/volume-dominator-kvz.sh
 exec = hyprpaper
-# exec-once = easyeffects --gapplication-service
+exec-once = easyeffects --gapplication-service
 
 #############################
 ### ENVIRONMENT VARIABLES ###
