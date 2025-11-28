@@ -1,5 +1,5 @@
 {
-  description = "Вириг у конфігурацію";
+  description = "Vyryğ u konfiğuraciju";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
@@ -40,7 +40,7 @@
         ({ config, pkgs, ... }: {
           home-manager.users.kvarnitz = import "${my-nixos-repo}/etc/nixos/home.nix" { inherit config pkgs inputs; };
         })
-        # Імпорт файлів з репозиторію через flakes
+        # Import fajliv z repozytoriju čerez flakes
         (import "${my-nixos-repo}/etc/nixos/zastosunky.nix")
         (import "${my-nixos-repo}/etc/nixos/konfihy.nix")
         (import "${my-nixos-repo}/etc/nixos/temka/temka.nix")

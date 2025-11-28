@@ -1,25 +1,25 @@
 { pkgs, settings, ... }: {
   home-manager.users.kvarnitz = { ... }: let
-    # Купа перемін у твоєму житті, які не відбудуться і ти здохнеш лохом
+    # Kupa peremin u tvojemu žytti, jaki ne vidbudutjsja i ty zdoxneš loxom
     cursorSize = 32;
     cursorSizeStr = toString cursorSize;
-    cursorThemeName = "Eksistere-Kyrenia"; # Ім'я твого брудного курсору
-    # Створення сміттєвого пакету курсора (якщо курсор завантажений локально)
+    cursorThemeName = "Ju-Fufu"; # Im'ja tvoğo brudnoğo kursoru
+    # Stvorennja smittjevoğo paketu kursora (jakŝo kursor zavantaženyj lokaljno)
     myCustomCursorPackage = pkgs.callPackage ( 
       { stdenv, lib }:
-      # Сміттєвий пакет на виході
+      # Smittjevyj paket na vyxodi
       stdenv.mkDerivation {
-        pname = "eksistere-kyrenia";
+        pname = "ju-fufu";
         version = "1.0";
-        src = ./cursors/Eksistere-Kyrenia;
+        src = ./cursors/Ju-Fufu;
         installPhase = ''
           mkdir -p $out/share/icons
-          cp -r . $out/share/icons/Eksistere-Kyrenia
+          cp -r . $out/share/icons/Ju-Fufu
         '';
       }
     ) {};
   in {
-    # Курс Нахуй
+    # Kurs naxuj
     gtk.cursorTheme.name = cursorThemeName;
     gtk.cursorTheme.package = myCustomCursorPackage;
     gtk.cursorTheme.size = cursorSize;
@@ -35,14 +35,14 @@
       "XCURSOR_THEME=${cursorThemeName}"
     ];
     wayland.windowManager.hyprland.settings.exec-once = [
-      "hyprctl setcursor ${cursorThemeName} ${cursorSizeStr}" # Прибуття Нахуй
+      "hyprctl setcursor ${cursorThemeName} ${cursorSizeStr}" # Prybuttja Naxuj
     ];
     wayland.windowManager.hyprland.settings.cursor.no_warps = false;
     wayland.windowManager.hyprland.settings.cursor.inactive_timeout = 7;
     wayland.windowManager.hyprland.settings.cursor.enable_hyprcursor = true;
     wayland.windowManager.hyprland.settings.cursor.sync_gsettings_theme = true;
     
-    # Темка для iQTerrible інтерфейсів 
+    # Temka dlja iQTerrible interfejsiv
     qt = {
       enable = true;
       platformTheme.name = "qtct";
@@ -51,18 +51,18 @@
     xdg.configFile = {
       "Kvantum/kvantum.kvconfig".text = ''
         [General]
-        # Використання конкретної темки з завантаженого пакету (типу варіації блять) !!!ТЕМУ ТРЕБА ЗМІНИТИ, ВОНА ЗНИКНЕ З ПАКЕТІВ!!!
+        # Vykorystannja konkretnoï temky z zavantaženoğo paketu (typu variaciï bljatj) !!!TEMU TREBA ZMINYTY, VONA ZNYKNE Z PAKETIV!!!
         theme=GraphiteNord
-      ''; # Завантаження темки
+      ''; # Zavantažennja temky
       "Kvantum/GraphiteNord".source = "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
     };
     
-    # Темка для ГТК (ГандонТещуКолотив) інтерфейсів
+    # Temka dlja GTK (GandonTeŝuKolotyv) interfejsiv
     gtk = {
       enable = true;
-      # Божі ікони
+      # Boži ikony
       iconTheme = {
-        # Створення не менш сміттєвого пакету ікон (якщо ікони завантажені локально)
+        # Stvorennja ne menš smittjevoğo paketu ikon (jakŝo ikony zavantaženi lokaljno)
         name = "BeautyDream-GTK";
         package = pkgs.callPackage (
           { stdenv, lib }:
@@ -77,17 +77,17 @@
           }
         ) {};
       };
-      # Темка
+      # Temka
       theme = {
-        # Ще один сміттєвий пакет
+        # Ŝe odyn smittjevyj paket
         name = "catppuccin-latte-pink-compact";
         package = pkgs.catppuccin-gtk.override {
-          accents =  ["pink"]; # Смак сміття
-          variant = "latte"; # Вишуканість сміття
-          size = "compact"; # Кількість сміття в наявності
+          accents =  ["pink"]; # Smak smittja
+          variant = "latte"; # Vyšukanistj smittja
+          size = "compact"; # Kiljkistj smittja v najavnosti
         };
       };
-      # Вибір раси
+      # Vybir rasy
       gtk3.extraConfig.gtk-application-prefer-dark-theme = false;
       gtk4.extraConfig.gtk-application-prefer-dark-theme = false;
     };
