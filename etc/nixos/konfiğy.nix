@@ -5,7 +5,6 @@
     # Hyprland
     home.file."/.config/hypr/hyprland.conf".text = ''
 env = QT_QPA_PLATFORMTHEME,qt6ct
-bind = SUPER+SHIFT, S, exec, bash -c 'wayfreeze & PID=$!; trap "kill -KILL $PID" EXIT; sleep 0.2; grim -g "$(slurp)" - | swappy -f -'
 
 # Metod rozbyttja konfiğuraciï na okremi fajly
 # source = ~/.config/hypr/myColors.conf
