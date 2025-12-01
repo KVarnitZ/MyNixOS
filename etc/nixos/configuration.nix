@@ -228,10 +228,6 @@
       rocmPackages.rocm-smi # Dlja monitorynğu GPU, analoğ nvidia-smi
       rocmPackages.rocm-cmake
       rocmPackages.rocm-runtime # Zağaljni biblioteky ROCm
-      amdvlk
-    ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk  # Dlja 32-bit sumisnosti
     ];
   };
 

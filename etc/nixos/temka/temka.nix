@@ -55,8 +55,9 @@
         theme=Catppuccin-Latte-Pink
       ''; # Zavantažennja temky
       "Kvantum/Catppuccin-Latte-Pink".source = "${pkgs.catppuccin-kvantum.override {
-        accent = "Pink";
-        variant = "Latte";
+        accent = "yellow"; # Smak smittja
+        variant = "latte"; # Vyšukanistj smittja
+        size = "compact"; # Kiljkistj smittja v najavnosti
       }}/share/Kvantum/Catppuccin-Latte-Pink";
     };
     
@@ -85,7 +86,7 @@
         # Ŝe odyn smittjevyj paket
         name = "catppuccin-latte-pink-compact";
         package = pkgs.catppuccin-gtk.override {
-          accents =  ["pink"]; # Smak smittja
+          accents =  ["yellow"]; # Smak smittja
           variant = "latte"; # Vyšukanistj smittja
           size = "compact"; # Kiljkistj smittja v najavnosti
         };
