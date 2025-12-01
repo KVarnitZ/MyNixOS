@@ -52,13 +52,12 @@
       "Kvantum/kvantum.kvconfig".text = ''
         [General]
         # Vykorystannja konkretnoï temky z zavantaženoğo paketu (typu variaciï bljatj)
-        theme=catppuccin-latte-yellow-compact
+        theme=catppuccin-latte-yellow
       ''; # Zavantažennja temky
-      "Kvantum/catppuccin-latte-yellow-compact".source = "${pkgs.catppuccin-kvantum.override {
+      "Kvantum/catppuccin-latte-yellow".source = "${pkgs.catppuccin-kvantum.override {
         accent = "yellow"; # Smak smittja
         variant = "latte"; # Vyšukanistj smittja
-        size = "compact"; # Kiljkistj smittja v najavnosti
-      }}/share/Kvantum/catppuccin-latte-yellow-compact";
+      }}/share/Kvantum/catppuccin-latte-yellow";
     };
     
     # Temka dlja GTK (GandonTeŝuKolotyv) interfejsiv
