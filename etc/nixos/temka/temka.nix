@@ -57,7 +57,6 @@
       "Kvantum/Catppuccin-Latte-Pink".source = "${pkgs.catppuccin-kvantum.override {
         accent = "yellow"; # Smak smittja
         variant = "latte"; # Vyšukanistj smittja
-        size = "compact"; # Kiljkistj smittja v najavnosti
       }}/share/Kvantum/Catppuccin-Latte-Pink";
     };
     
