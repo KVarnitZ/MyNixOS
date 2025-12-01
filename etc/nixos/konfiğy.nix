@@ -172,11 +172,6 @@ input {
     }
 }
 
-# https://wiki.hyprland.org/Configuring/Variables/#gestures
-gestures {
-    workspace_swipe = false
-}
-
 # Pryklad konfiğuraciï dlja kožnoji prybludy
 # Dyvitjsja https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs dlja biljšoğo
 device {
