@@ -51,13 +51,13 @@
     xdg.configFile = {
       "Kvantum/kvantum.kvconfig".text = ''
         [General]
-        # Vykorystannja konkretnoï temky z zavantaženoğo paketu (typu variaciï bljatj) !!!TEMU TREBA ZMINYTY, VONA ZNYKNE Z PAKETIV!!!
-        theme=Catppuccin-Latte-Pink
+        # Vykorystannja konkretnoï temky z zavantaženoğo paketu (typu variaciï bljatj)
+        theme=Catppuccin-Latte-Yellow
       ''; # Zavantažennja temky
-      "Kvantum/Catppuccin-Latte-Pink".source = "${pkgs.catppuccin-kvantum.override {
+      "Kvantum/Catppuccin-Latte-Yellow".source = "${pkgs.catppuccin-kvantum.override {
         accent = "yellow"; # Smak smittja
         variant = "latte"; # Vyšukanistj smittja
-      }}/share/Kvantum/Catppuccin-Latte";
+      }}/share/Kvantum/Catppuccin-Latte-Yellow";
     };
     
     # Temka dlja GTK (GandonTeŝuKolotyv) interfejsiv
@@ -83,7 +83,7 @@
       # Temka
       theme = {
         # Ŝe odyn smittjevyj paket
-        name = "catppuccin-latte-pink-compact";
+        name = "catppuccin-latte-yellow-compact";
         package = pkgs.catppuccin-gtk.override {
           accents =  ["yellow"]; # Smak smittja
           variant = "latte"; # Vyšukanistj smittja
