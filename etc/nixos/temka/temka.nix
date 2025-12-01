@@ -57,7 +57,7 @@
       "Kvantum/Catppuccin-Latte-Pink".source = "${pkgs.catppuccin-kvantum.override {
         accent = "yellow"; # Smak smittja
         variant = "latte"; # Vyšukanistj smittja
-      }}/share/Kvantum/Catppuccin-Latte-Pink";
+      }}/share/Kvantum/Catppuccin-Latte";
     };
     
     # Temka dlja GTK (GandonTeŝuKolotyv) interfejsiv
