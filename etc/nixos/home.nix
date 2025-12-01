@@ -3,7 +3,7 @@
 {
 home.username = "kvarnitz";
 home.homeDirectory = "/home/kvarnitz";
-home.stateVersion = "25.05";
+home.stateVersion = "25.11";
 
   fonts.fontconfig = {
     enable = true;

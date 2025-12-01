@@ -1,7 +1,7 @@
 {
     
   home-manager.users.kvarnitz = {
-    home.stateVersion = "25.05"; # Mudak versija
+    home.stateVersion = "25.11"; # Mudak versija
     # Hyprland
     home.file."/.config/hypr/hyprland.conf".text = ''
 env = QT_QPA_PLATFORMTHEME,qt6ct
@@ -21,9 +21,9 @@ exec = ~/.config/neuronkiller/volume-dominator-kvz.sh
 exec = hyprpaper
 exec-once = easyeffects --gapplication-service
 
-#############################
-### ENVIRONMENT VARIABLES ###
-#############################
+#########################
+### ZMINNI SEREDOVYŜA ###
+#########################
 
 env = XCURSOR_SIZE,24
 env = HYPRCURSOR_SIZE,24

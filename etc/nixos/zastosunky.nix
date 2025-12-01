@@ -1,7 +1,7 @@
 {
 
   home-manager.users.kvarnitz = {
-    home.stateVersion = "25.05"; # Мудак version
+    home.stateVersion = "25.11"; # Мудак version
     # Steam
     home.file.".local/share/applications/steam.desktop".text = ''
 [Desktop Entry]

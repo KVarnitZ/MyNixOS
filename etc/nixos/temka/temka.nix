@@ -52,9 +52,12 @@
       "Kvantum/kvantum.kvconfig".text = ''
         [General]
         # Vykorystannja konkretnoï temky z zavantaženoğo paketu (typu variaciï bljatj) !!!TEMU TREBA ZMINYTY, VONA ZNYKNE Z PAKETIV!!!
-        theme=GraphiteNord
+        theme=Catppuccin-Latte-Pink
       ''; # Zavantažennja temky
-      "Kvantum/GraphiteNord".source = "${pkgs.graphite-kde-theme}/share/Kvantum/GraphiteNord";
+      "Kvantum/Catppuccin-Latte-Pink".source = "${pkgs.catppuccin-kvantum.override {
+        accent = "Pink";
+        variant = "Latte";
+      }}/share/Kvantum/Catppuccin-Latte-Pink";
     };
     
     # Temka dlja GTK (GandonTeŝuKolotyv) interfejsiv
@@ -68,7 +71,7 @@
           { stdenv, lib }:
           stdenv.mkDerivation {
             pname = "beautydream-gtk-icons";
-            version = "2.0"; # Пєтух
+            version = "2.0"; # Pjetux
             src = ./icons/BeautyDream-GTK;
             installPhase = ''
               mkdir -p $out/share/icons

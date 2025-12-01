@@ -2,10 +2,10 @@
   description = "Vyryğ u konfiğuraciju";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     my-nixos-repo = {
@@ -42,7 +42,7 @@
         })
         # Import fajliv z repozytoriju čerez flakes
         (import "${my-nixos-repo}/etc/nixos/zastosunky.nix")
-        (import "${my-nixos-repo}/etc/nixos/konfihy.nix")
+        (import "${my-nixos-repo}/etc/nixos/konfiğy.nix")
         (import "${my-nixos-repo}/etc/nixos/temka/temka.nix")
       ];
     };
