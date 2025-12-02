@@ -52,11 +52,11 @@
       "Kvantum/kvantum.kvconfig".text = ''
         [General]
         # Vykorystannja konkretnoï temky z zavantaženoğo paketu (typu variaciï bljatj)
-        theme=catppuccin-mocha-yellow
+        theme=catppuccin-latte-yellow
       ''; # Zavantažennja temky
-      "Kvantum/catppuccin-mocha-yellow".source = "${pkgs.catppuccin-kvantum.override {
+      "Kvantum/catppuccin-latte-yellow".source = "${pkgs.catppuccin-kvantum.override {
         accent = "yellow"; # Smak smittja
-        variant = "mocha"; # Vyšukanistj smittja
+        variant = "latte"; # Vyšukanistj smittja
       }}/share/Kvantum/catppuccin-mocha-yellow";
     };
     
@@ -83,16 +83,16 @@
       # Temka
       theme = {
         # Ŝe odyn smittjevyj paket
-        name = "catppuccin-mocha-yellow-compact";
+        name = "catppuccin-latte-yellow-compact";
         package = pkgs.catppuccin-gtk.override {
           accents =  ["yellow"]; # Smak smittja
-          variant = "mocha"; # Vyšukanistj smittja
+          variant = "latte"; # Vyšukanistj smittja
           size = "compact"; # Kiljkistj smittja v najavnosti
         };
       };
       # Vybir rasy
-      gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-      gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
+      gtk3.extraConfig.gtk-application-prefer-dark-theme = false;
+      gtk4.extraConfig.gtk-application-prefer-dark-theme = false;
     };
   };
 }
