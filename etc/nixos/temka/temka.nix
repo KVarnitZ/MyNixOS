@@ -91,8 +91,8 @@
         };
       };
       # Vybir rasy
-      gtk3.extraConfig.gtk-application-prefer-dark-theme = false;
-      gtk4.extraConfig.gtk-application-prefer-dark-theme = false;
+      gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+      gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
     };
   };
 }
