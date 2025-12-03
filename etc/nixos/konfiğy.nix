@@ -185,7 +185,7 @@ device {
 #######################
 
 # Znjatok
-bind = SUPER+SHIFT, S, exec, bash -c 'wayfreeze & PID=$!; trap "kill -KILL $PID" EXIT; sleep 0.2; grim -g "$(slurp)" - | swappy -f -'
+bind = SUPER+SHIFT, S, exec, flameshot gui --delay 500
 
 $mainMod = SUPER # Klaviša "Windows"
 
