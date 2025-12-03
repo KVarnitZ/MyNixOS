@@ -185,7 +185,7 @@ device {
 #######################
 
 # Znjatok
-bind = SUPER+SHIFT, S, exec, flameshot gui --delay 500
+bind = SUPER+SHIFT, S, exec, flameshot gui
 
 $mainMod = SUPER # Klaviša "Windows"
 
