@@ -1,5 +1,7 @@
 # MyNixOS
 Moja samorobna systema NixOS 25.11 Xantusia
+## Латиниця
+Усе написано українською мовою за офіційною системою А державного стандарту України 9112:2021. Ось [Транслітератор](https://kvarnitz.github.io/UkrainianTransliterator/), який можна використовувати для переведення тексту в кирилицю та навпаки, якщо буде складно читати.
 ## Metod
 Ğolovnyj fajl konfiğuraciï ce [flake.nix](/etc/nixos/flake.nix), pidvantažuje vsi fajly z cjoğo repozytorija. Cej metod robe systemu leğkoju dlja vidnovlennja, bo potriben vsjoğo lyše [flake.nix](/etc/nixos/flake.nix) ([configuration.nix](/etc/nixos/configuration.nix) xoč i prysutnij u repozytoriï, prote avtomatyčno ne zadijan, bo inakše bulo by skladno pracjuvaty z systemoju). Tak samo zminjuvaty konfiğy, jaki poza cym fajlom, potribno čerez GitHub. Cej šljax troxy dovšyj, ale bezpečnyj ta dozvoljaje vidslidkovuvaty proğres. Raniše ce pracjuvalo bez flake, a same čerez ručnu zaminu sha256, tobto xešu, bo pislja zminy fajla vin onovljujetjsja. Teper že [flake.nix](/etc/nixos/flake.nix) samostijno zanosytj vse do ```flake.lock``` Usi stvorennja fajliv robljatjsja čerez ```home-manager```, navitj hyprland. Kožen majbutnij fajl, jakyj je častynoju deklaratyvnoï systemy abo pereneseno, abo bude pereneseno do [home.nix](/etc/nixos/home.nix).
 ## Systema
