@@ -11,6 +11,8 @@
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [ "fuse" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "KVarnitZ"; # Šo ty, ğolova?
 
@@ -53,7 +55,12 @@
   users.users.kvarnitz = {
     isNormalUser = true;
     description = "KVarnitZ";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "kvm" # Dlja VM
+      "libvirtd" # Tež dlja VM
+    ];
     packages = with pkgs; [];
   };
 
@@ -66,13 +73,8 @@
 
   # Pakety
   environment.systemPackages = with pkgs; [
-    # Cumshot
-    grim # Skriner
-    slurp # Vydilennja ekranu
-    swappy # GUI dlja vsjoğo
-    wl-clipboard # Bufer
-    wayfreeze # Zamerzannja ekranu
     # Xuj
+    flameshot # Skriner
     wofi # Menju proğram
     xfce.thunar # Fajlovyj menedžer
     xfce.tumbler  # Loliatjury    
@@ -111,12 +113,13 @@
     mangohud # Infa pro pk v iğrax
     hyprpaper # Špalery straxu
     woeusb-ng # Dlja manipuljacij z vindoju
+    gnome-boxes # Virtual Sex Machine
     ntfs3g # Paket dlja ntfs
     lm_sensors # Temperatura pk
     ffmpeg # Uğar z kodekamy
     # Ğratysja
+    libreoffice # Paket ofisiv
     steam # Ventylj v šapci
-    hydralauncher # Zelenyj steam
     protonup-ng # Kastomni protony dlja stimu
     wine # Imitacija Kaldows
     winetricks # Dodača do Wine
@@ -145,6 +148,7 @@
       "steam-unwrapped"
       "logmein-hamachi"
       "unityhub"
+      "corefonts"
     ];
 
   services.flatpak.enable = true;
@@ -156,6 +160,9 @@
     '';
   };
 
+  # Virtualizacija (dovbojov, tut tak i napysano bulo)
+  virtualisation.libvirtd.enable = true;
+
   # Eksperementaljna erekcija
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -166,7 +173,7 @@
       xkb_symbols "basic" {
           include "us(basic)"
           name[Group1] = "English (US, Ukrainian Latin)";
-          # Zapasnyj merod ryğu
+          # Zapasnyj metod ryğu
           key <AB01> { [ z, Z, zcaron, Zcaron ] };
           key <AC02> { [ s, S, scaron, Scaron ] }; 
           key <AB03> { [ c, C, ccaron, Ccaron ] }; 
@@ -207,8 +214,6 @@
     ];
   };
 
-  boot.kernelModules = [ "fuse" ];
-
   # Vudjuxa
   services.xserver = {
     enable = true;
@@ -240,9 +245,9 @@
     device = "/dev/disk/by-uuid/c67938c7-35a8-4ae8-8caf-2ce0f23b993d"; # Vkazuvannja točnoğo dysku, inakše vony budutj vypadkovo jednatysja
     fsType = "ext4";
   };
-  fileSystems."/mnt/Durmanyk" = {
-    device = "/dev/disk/by-uuid/b38de0ac-9e58-4027-9b8b-ab5e11e4284b"; # Vkazuvannja točnoğo dysku, inakše vony budutj vypadkovo jednatysja
-    fsType = "ext4";
-  };
+  #fileSystems."/mnt/Durmanyk" = {
+    #device = "/dev/disk/by-uuid/b38de0ac-9e58-4027-9b8b-ab5e11e4284b"; # Vkazuvannja točnoğo dysku, inakše vony budutj vypadkovo jednatysja
+    #fsType = "ext4";
+  #};
 
 }

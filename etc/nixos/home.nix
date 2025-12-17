@@ -5,6 +5,14 @@ home.username = "kvarnitz";
 home.homeDirectory = "/home/kvarnitz";
 home.stateVersion = "25.11";
 
+  services.flatpak = {
+    enable = true;
+    packages = [
+      "org.vinegarhq.Sober"
+    ];
+    uninstallUnmanaged = true;
+  };
+  
   fonts.fontconfig = {
     enable = true;
   };
