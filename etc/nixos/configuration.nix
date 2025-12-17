@@ -159,6 +159,44 @@
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
+systemd.services.flatpak-managed-packages = {
+  wantedBy = [ "multi-user.target" ];
+  after = [ "flatpak-repo.service" ];
+  path = [ pkgs.flatpak ];
+  script = ''
+    # Flatpak pakety z trupamy
+    WANTED_PACKAGES=(
+      "org.vinegarhq.Sober"
+    )
+    
+    for package in "''${WANTED_PACKAGES[@]}"; do
+      if ! flatpak list --app | grep -q "$package"; then
+        echo "Installing $package..."
+        flatpak install -y flathub "$package"
+      fi
+    done
+    
+    flatpak list --app --columns=application | while read -r installed; do
+      if [[ -n "$installed" ]]; then
+        found=false
+        for wanted in "''${WANTED_PACKAGES[@]}"; do
+          if [[ "$installed" == "$wanted" ]]; then
+            found=true
+            break
+          fi
+        done
+        if [[ "$found" == "false" ]]; then
+          echo "Removing unwanted package: $installed"
+          flatpak uninstall -y "$installed"
+        fi
+      fi
+    done
+  '';
+  serviceConfig = {
+    Type = "oneshot";
+    RemainAfterExit = true;
+  };
+};
 
   # Virtualizacija (dovbojov, tut tak i napysano bulo)
   virtualisation.libvirtd.enable = true;
