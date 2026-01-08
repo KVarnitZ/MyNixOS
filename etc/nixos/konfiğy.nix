@@ -199,6 +199,7 @@ bind = $mainMod, F, fullscreen,                                          # Povny
 bind = $mainMod, R, exec, $menu                                          # Menju zapusku proğram
 bind = $mainMod, P, pseudo,                                              # Zafiksuvaty vikno
 bind = $mainMod, J, togglesplit,                                         # Zminyty položennja vikon
+bind = $mainMod, P, pin,                                                 # Zapinyty vikno
 
 # Rux fokusa
 bind = $mainMod, left, movefocus, l                                      # Peremknuty fokus livoruč
