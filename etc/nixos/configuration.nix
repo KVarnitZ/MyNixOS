@@ -1,10 +1,11 @@
-{ config, pkgs, lib, unstable, ... }:
+{ config, pkgs, lib, unstable, inputs, ... }:
 
 {
   imports = 
     [  
       ./hardware-configuration.nix
       #./transljator.nix
+      ./undervolt.nix
       ./server.nix
     ];
 
@@ -60,6 +61,8 @@
       "wheel"
       "kvm" # Dlja VM
       "libvirtd" # Tež dlja VM
+      "video"
+      "render"
     ];
     packages = with pkgs; [];
   };
@@ -79,8 +82,9 @@
     xfce.thunar # Fajlovyj menedžer
     xfce.tumbler  # Loliatjury    
     librewolf # Brauzer
-    vesktop # Diskord
-    element-desktop # Matrix 
+    vesktop # Discord
+    element-desktop # Matrix
+    fluffychat # Matrix 2 
     youtube-music # Muzyčka
     vlc # Videoproğravač
     imv # Fotopereğljadač
@@ -98,6 +102,7 @@
         obs-pipewire-audio-capture
       ];
     })
+    blockbench # Stvorennja 3D modelej u blokax
     logmein-hamachi # Lokaljne pidključennja v ineti
     unityhub # Ob'jednujtesj xolopy
     fontforge-gtk # Redaktor šryftiv
@@ -120,24 +125,28 @@
     # Ğratysja
     libreoffice # Paket ofisiv
     steam # Ventylj v šapci
+    steam-run # Zapuskač Steam
     protonup-ng # Kastomni protony dlja stimu
+    unstable.protonplus # Proton Installer
     wine # Imitacija Kaldows
     winetricks # Dodača do Wine
     gamescope # Manipuljaciï z iğramy
     heroic # Inši launčery v odnomu
     lutris # Inši launčery v odnomu 2
     prismlauncher # Majnkraft
+    inputs.hytale-launcher.packages.${pkgs.system}.default
     appimage-run # Zapuskač proğ AppImage
     # Droč
     vulkan-tools # Jasno 
     vulkan-loader # Ne ïbu
     vulkan-validation-layers # Ne ïbu
-    python3 # Oğorny rukamy moğo pitona
-    helvum
+    helvum # Pereğljad/Redağuvannja Pipewire
     openjdk # Džava
     git # Uğar z GitHub
     git-lfs # Dlja velykyx fajliv GitHub
     gh # Pov'jazka z GitHub
+    avalonia-ilspy # Redaktor dll
+    (python3.withPackages (ps: with ps; [ requests ])) # Oğorny rukamy moğo pitona
   ];
 
   # Dozvil -IQ paketiv
@@ -146,6 +155,7 @@
       "davinci-resolve"
       "steam"
       "steam-unwrapped"
+      "steam-run"
       "logmein-hamachi"
       "unityhub"
       "corefonts"
@@ -169,24 +179,41 @@ systemd.services.flatpak-managed-packages = {
       "org.vinegarhq.Sober"
     )
     
+    # Iğnorovani trupy
+    IGNORED_PACKAGES=(
+      "com.hypixel.HytaleLauncher "
+    )
+
     for package in "''${WANTED_PACKAGES[@]}"; do
       if ! flatpak list --app | grep -q "$package"; then
-        echo "Installing $package..."
+        echo "Vstanovlennja $package..."
         flatpak install -y flathub "$package"
       fi
     done
     
     flatpak list --app --columns=application | while read -r installed; do
       if [[ -n "$installed" ]]; then
-        found=false
+        keep_package=false
+
         for wanted in "''${WANTED_PACKAGES[@]}"; do
           if [[ "$installed" == "$wanted" ]]; then
-            found=true
+            keep_package=true
             break
           fi
         done
-        if [[ "$found" == "false" ]]; then
-          echo "Removing unwanted package: $installed"
+
+        if [[ "$keep_package" == "false" ]]; then
+          for ignored in "''${IGNORED_PACKAGES[@]}"; do
+            if [[ "$installed" == "$ignored" ]]; then
+              echo "Iğnoruvannja paketiv: $installed"
+              keep_package=true
+              break
+            fi
+          done
+        fi
+
+        if [[ "$keep_package" == "false" ]]; then
+          echo "Vydalennja ne vkazanyx paketiv: $installed"
           flatpak uninstall -y "$installed"
         fi
       fi
@@ -211,6 +238,10 @@ systemd.services.flatpak-managed-packages = {
       xkb_symbols "basic" {
           include "us(basic)"
           name[Group1] = "English (US, Ukrainian Latin)";
+
+          key <AE11> { [ minus, underscore, emdash, endash ] };
+          key <TLDE> { [ grave, rightsinglequotemark, asciitilde, asciitilde ] };
+
           # Zapasnyj metod ryğu
           key <AB01> { [ z, Z, zcaron, Zcaron ] };
           key <AC02> { [ s, S, scaron, Scaron ] }; 
@@ -224,7 +255,7 @@ systemd.services.flatpak-managed-packages = {
           key <AC11> { [ apostrophe, quotedbl, ccaron, Ccaron ] };
           key <AD11> { [ bracketleft, braceleft, zcaron, Zcaron ] };
           key <AD12> { [ bracketright, braceright, idiaeresis, Idiaeresis ] };
-          
+
           include "level3(ralt_switch)"
       };
     '';

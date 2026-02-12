@@ -16,9 +16,13 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-2.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hytale-launcher = {
+      url = "github:TNAZEP/HytaleLauncherFlake";
+      flake = true;
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, my-nixos-repo, lix-module, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, my-nixos-repo, lix-module, hytale-launcher, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};

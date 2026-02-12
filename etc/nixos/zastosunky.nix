@@ -62,5 +62,15 @@ Name=Friends
 Name[uk]=Друзі
 Exec=steam steam://open/friends
     '';
+    # DTEK ğrafik
+    home.file.".local/share/applications/DTEK.desktop".text = ''
+[Desktop Entry]
+Name=DTEK ğrafik
+Comment=ДТЕК, Дтек, дтек, DTEK, Dtek, dtek, Світло, світло, Svitlo, svitlo, LNTR, Lntr, lntr, ВЕУЛ, Веул, веул, Імшедщ, імшедщ, Cdsnkj, cdsnkj
+Exec=sh -c "python3 /home/kvarnitz/.local/share/applications/DTEK/dtek.py | wofi --show dmenu --prompt 'Графік світла' --width 500 --height 600 --cache-file /dev/null --no-actions --hide-scroll"
+Terminal=false
+Type=Application
+Categories=FUCK rUSSIA;
+    '';
   };
 }
