@@ -73,6 +73,6 @@ Type=Application
 Categories=FUCK rUSSIA;
     '';
     # DTEK ğrafik code
-    home.file.".local/share/applications/DTEK/dtek.py".text = builtins.readFile ../home/kvarnitz/.local/share/applications/DTEK/dtek.py;
+    home.file.".local/share/applications/DTEK/dtek.py".text = builtins.readFile .../home/kvarnitz/.local/share/applications/DTEK/dtek.py;
   };
 }
