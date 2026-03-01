@@ -20,6 +20,8 @@ $menu = wofi --show drun
 exec = ~/.config/neuronkiller/volume-dominator-kvz.sh
 exec = hyprpaper
 exec-once = easyeffects --gapplication-service
+exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec-once = gnome-keyring-daemon --start --components=secrets
 
 #########################
 ### ZMINNI SEREDOVYŜA ###
