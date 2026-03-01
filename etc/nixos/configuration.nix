@@ -7,6 +7,7 @@
       #./transljator.nix
       ./undervolt.nix
       ./server.nix
+      #./temka/temka.nix
     ];
 
   # Bootloader
@@ -14,6 +15,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [ "fuse" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [
+    "amd_iommu=on"
+    "iommu=pt"
+  ];
 
   networking.hostName = "KVarnitZ"; # Šo ty, ğolova?
 
@@ -84,7 +89,7 @@
     librewolf # Brauzer
     vesktop # Discord
     element-desktop # Matrix
-    fluffychat # Matrix 2 
+    nheko # Matrix 2 
     youtube-music # Muzyčka
     vlc # Videoproğravač
     imv # Fotopereğljadač
@@ -118,13 +123,11 @@
     mangohud # Infa pro pk v iğrax
     hyprpaper # Špalery straxu
     woeusb-ng # Dlja manipuljacij z vindoju
-    gnome-boxes # Virtual Sex Machine
     ntfs3g # Paket dlja ntfs
     lm_sensors # Temperatura pk
     ffmpeg # Uğar z kodekamy
     # Ğratysja
     libreoffice # Paket ofisiv
-    steam # Ventylj v šapci
     steam-run # Zapuskač Steam
     protonup-ng # Kastomni protony dlja stimu
     unstable.protonplus # Proton Installer
@@ -134,8 +137,12 @@
     heroic # Inši launčery v odnomu
     lutris # Inši launčery v odnomu 2
     prismlauncher # Majnkraft
-    inputs.hytale-launcher.packages.${pkgs.system}.default
+    inputs.hytale-launcher.packages.${pkgs.system}.default # Hytale
     appimage-run # Zapuskač proğ AppImage
+    # Virtual Sex Drones
+    virt-manager
+    qemu_full
+    OVMF
     # Droč
     vulkan-tools # Jasno 
     vulkan-loader # Ne ïbu
@@ -149,6 +156,15 @@
     (python3.withPackages (ps: with ps; [ requests ])) # Oğorny rukamy moğo pitona
   ];
 
+  # Ventylj v šapci + ğomes
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
+
+  security.rtkit.enable = true;
+
   # Dozvil -IQ paketiv
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
@@ -159,7 +175,13 @@
       "logmein-hamachi"
       "unityhub"
       "corefonts"
+      "olm"
     ];
+
+  # Dozvil zlamanyx paketiv
+  nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
+  ];
 
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {
@@ -176,7 +198,7 @@ systemd.services.flatpak-managed-packages = {
   script = ''
     # Flatpak pakety z trupamy
     WANTED_PACKAGES=(
-      "org.vinegarhq.Sober"
+      "org.vinegarhq.Sober" # Urodlox
     )
     
     # Iğnorovani trupy
@@ -226,7 +248,13 @@ systemd.services.flatpak-managed-packages = {
 };
 
   # Virtualizacija (dovbojov, tut tak i napysano bulo)
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_full;
+      runAsRoot = true;
+    };
+  };
 
   # Eksperementaljna erekcija
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
