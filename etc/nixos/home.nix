@@ -1,10 +1,17 @@
 { config, pkgs, inputs, ... }:
 
 {
-home.username = "kvarnitz";
-home.homeDirectory = "/home/kvarnitz";
-home.stateVersion = "25.11";
-  
+  home.username = "kvarnitz";
+  home.homeDirectory = "/home/kvarnitz";
+  home.stateVersion = "25.11";
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings.exec-once = [
+      "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=Hyprland"
+      "systemctl --user start graphical-session.target"
+    ];
+
   fonts.fontconfig = {
     enable = true;
   };
