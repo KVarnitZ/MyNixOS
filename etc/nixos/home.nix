@@ -11,6 +11,7 @@
       "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=Hyprland"
       "systemctl --user start graphical-session.target"
     ];
+  };
 
   fonts.fontconfig = {
     enable = true;
