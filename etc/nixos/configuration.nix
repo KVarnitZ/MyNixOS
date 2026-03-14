@@ -5,9 +5,10 @@
     [  
       ./hardware-configuration.nix
       #./transljator.nix
-      ./undervolt.nix
+      #./undervolt.nix
       ./server.nix
       #./temka/temka.nix
+      #../../common/module/gui/steam
     ];
 
   # Bootloader
@@ -15,10 +16,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [ "fuse" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [
-    "amd_iommu=on"
-    "iommu=pt"
-  ];
+  boot.kernelParams = [ "amd_iommu=on" "iommu=pt" ];
 
   networking.hostName = "KVarnitZ"; # Šo ty, ğolova?
 
@@ -88,12 +86,10 @@
     xfce.tumbler  # Loliatjury    
     librewolf # Brauzer
     vesktop # Discord
-    element-desktop # Matrix
-    nheko # Matrix 2 
+    element-desktop # Matrix 
     youtube-music # Muzyčka
     vlc # Videoproğravač
     imv # Fotopereğljadač
-    telegram-desktop # FSB transljator
     qbittorrent # Torent
     protonvpn-gui # VPN
     unstable.davinci-resolve # Video rekdaktor
@@ -154,9 +150,10 @@
     gh # Pov'jazka z GitHub
     avalonia-ilspy # Redaktor dll
     (python3.withPackages (ps: with ps; [ requests ])) # Oğorny rukamy moğo pitona
+    openxray # Stalker
   ];
 
-  # Ventylj v šapci + ğomes
+  # Ventylj v šapci
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -175,13 +172,9 @@
       "logmein-hamachi"
       "unityhub"
       "corefonts"
-      "olm"
+      "openxray"
+      "pycharm"
     ];
-
-  # Dozvil zlamanyx paketiv
-  nixpkgs.config.permittedInsecurePackages = [
-    "olm-3.2.16"
-  ];
 
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {
@@ -294,10 +287,6 @@ systemd.services.flatpak-managed-packages = {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-  };
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
   };
 
   # Proğramnyj uğar

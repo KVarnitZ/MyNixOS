@@ -22,7 +22,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, my-nixos-repo, lix-module, hytale-launcher, ... }@inputs:
+  outputs = { self, nixpkgs, lix-module, nixpkgs-unstable, home-manager, my-nixos-repo, hytale-launcher, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -48,6 +48,7 @@
         (import "${my-nixos-repo}/etc/nixos/zastosunky.nix")
         (import "${my-nixos-repo}/etc/nixos/konfiğy.nix")
         (import "${my-nixos-repo}/etc/nixos/temka/temka.nix")
+        (import "${my-nixos-repo}/etc/nixos/undervolt.nix")
       ];
     };
   };
